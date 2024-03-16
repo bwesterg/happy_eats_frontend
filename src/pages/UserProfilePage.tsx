@@ -6,7 +6,7 @@ const UserProfilePage = () => {
   const { updateUser, isLoading: isUpdateLoading } = useUpdateMyUser();
 
   if(isGetLoading) {
-    return <span>Loading Loading Loading....</span>;
+    return <span>Hold on, we're using the free tier of Render.  This may take up to 30 seconds...</span>;
   }
 
   if (!currentUser) {
