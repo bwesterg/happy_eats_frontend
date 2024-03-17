@@ -1,7 +1,7 @@
-import { z } from "zod";
 import { Form } from "@/components/ui/form";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import DetailsSection from "./DetailsSection";
 import { Separator } from "@/components/ui/separator";
 import CuisinesSection from "./CuisinesSection";
@@ -9,18 +9,19 @@ import MenuSection from "./MenuSection";
 import ImageSection from "./ImageSection";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
+import { Restaurant } from "@/types";
 
 const formSchema = z.object({
   restaurantName: z.string({
     required_error: "Restaurant name is mandatory",
   }),
-  restaurantCity: z.string({
+  city: z.string({
     required_error: "City name is mandatory",
   }),
-  restaurantState: z.string({
+  state: z.string({
     required_error: "State name is mandatory",
   }),
-  restaurantCountry: z.string({
+  country: z.string({
     required_error: "Country name is mandatory",
   }),
   deliveryPrice: z.coerce.number({
@@ -43,15 +44,16 @@ const formSchema = z.object({
   imageFile: z.instanceof(File, { message: "Image is mandatory" }),
 });
 
-type restaurantFormData = z.infer<typeof formSchema>
+type RestaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
-  onSave: (ManageRestaurantForm: FormData) => void;
-  isloading: boolean;
+  restaurant?:Restaurant;
+  onSave: (RestaurantFormData: FormData) => void;
+  isLoading: boolean;
 };
 
-const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
-  const form = useForm<restaurantFormData>({
+const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
+  const form = useForm<RestaurantFormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       cuisines: [],
@@ -59,9 +61,31 @@ const ManageRestaurantForm = ({ onSave, isLoading }: Props) => {
     },
   });
 
-  const onSubmit = (formDataJson: restaurantFormData) => {
-    //todo: convert formDataJson to a new FormData object
-  }
+  const onSubmit = (formDataJson: RestaurantFormData) => {
+    // Convert formDataJson to a new FormData object
+    const formData = new FormData();
+
+    formData.append("restaurantName", formDataJson.restaurantName);
+    formData.append("city", formDataJson.city);
+    formData.append("state", formDataJson.state);
+    formData.append("country", formDataJson.country);
+    // http requests only use strings
+    formData.append("deliveryPrice", (formDataJson.deliveryPrice * 100).toString());
+    formData.append("estimatedDeliveryTime", formDataJson.estimatedDeliveryTime.toString());
+
+    formDataJson.cuisines.forEach((cuisine, index) => {
+      formData.append(`cuisines[${index}]`, cuisine);
+    });
+
+    formDataJson.menuItems.forEach((menuItem, index) => {
+      formData.append(`menuItems[${index}][name]`, menuItem.name);
+      formData.append(`menuItems[${index}][price]`, (menuItem.price * 100).toString());
+    });
+
+    formData.append(`imageFile`, formDataJson.imageFile);
+
+    onSave(formData);
+  };
 
   return (
     <Form {...form}>
