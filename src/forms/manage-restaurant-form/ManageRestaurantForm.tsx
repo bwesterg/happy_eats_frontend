@@ -10,6 +10,7 @@ import ImageSection from "./ImageSection";
 import LoadingButton from "@/components/LoadingButton";
 import { Button } from "@/components/ui/button";
 import { Restaurant } from "@/types";
+import { useEffect } from "react";
 
 const formSchema = z.object({
   restaurantName: z.string({
@@ -41,13 +42,17 @@ const formSchema = z.object({
       price: z.coerce.number().min(1, "Price is mandatory")
     })
   ),
-  imageFile: z.instanceof(File, { message: "Image is mandatory" }),
-});
+  imageUrl: z.string().optional(),
+  imageFile: z.instanceof(File, { message: "Image is mandatory" }).optional(),
+}).refine((data)=> data.imageUrl || data.imageFile, {
+  message: "Image url OR image file must be provided",
+  path: ["imageFile"],
+})
 
 type RestaurantFormData = z.infer<typeof formSchema>;
 
 type Props = {
-  restaurant?:Restaurant;
+  restaurant?: Restaurant;
   onSave: (RestaurantFormData: FormData) => void;
   isLoading: boolean;
 };
@@ -60,6 +65,29 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
       menuItems: [{ name: "", price: 0 }]
     },
   });
+
+  useEffect(() => {
+    if(!restaurant) {
+      return;
+    }
+    console.log("chairlift", restaurant.imageUrl)
+    const deliveryPriceFormatted = parseInt(
+      (restaurant.deliveryPrice/100).toFixed(2)
+      );
+
+      const menuItemsFormatted = restaurant.menuItems.map((item) => ({
+        ...item, 
+        price: parseInt((item.price/100).toFixed(2)),
+      }));
+
+      const updatedRestaurant = {
+        ...restaurant,
+        deliveryPrice: deliveryPriceFormatted,
+        menuItems: menuItemsFormatted
+      };
+
+      form.reset(updatedRestaurant);
+  }, [form, restaurant]);
 
   const onSubmit = (formDataJson: RestaurantFormData) => {
     // Convert formDataJson to a new FormData object
@@ -82,7 +110,9 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
       formData.append(`menuItems[${index}][price]`, (menuItem.price * 100).toString());
     });
 
-    formData.append(`imageFile`, formDataJson.imageFile);
+    if(formDataJson.imageFile){
+      formData.append(`imageFile`, formDataJson.imageFile);
+    }
 
     onSave(formData);
   };
