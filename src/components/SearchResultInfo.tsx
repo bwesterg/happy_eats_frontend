@@ -12,7 +12,6 @@ const SearchResultInfo = ({ total, city }: Props) => {
         {total} Found in {city}
         <Link to="/" className="ml-1 text-sm font-semibold underline cursor-pointer text-blue-500">Udate Location</Link>
       </span>
-      TODO: insert dropdown sorter here
     </div>
   )
 }
