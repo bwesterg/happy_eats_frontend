@@ -9,8 +9,8 @@ const Footer = () => {
         </span>
         <span className="text-white font-bold tracking-tight flex lg:gap-4">
           <div className="grid md:grid-cols-2 text-center max-md:mt-3">
-            <Link to={"/privacy-policy"}>Privacy Policy</Link>
-            <Link to={"/terms-and-conditions"}>Terms & Conditions</Link>
+            <Link to={"/privacy-policy"} className="hover:text-blue-200">Privacy Policy</Link>
+            <Link to={"/terms-and-conditions"} className="hover:text-blue-200">Terms & Conditions</Link>
           </div>
 
         </span>

@@ -1,7 +1,7 @@
 import landingImage from "../assets/landing.png";
 import appDownloadImage from "../assets/appDownload.png"; 
 import SearchBar, { SearchForm } from "@/components/SearchBar";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -17,19 +17,23 @@ const HomePage = () => {
         <h1 className="text-5xl font-bold tracking-tight text-blue-600">
           Food will make you happy.
         </h1>
-        <span className="text-xl text-gray-500 font-semibold font-thin">Happiness is a click away</span>
-        <SearchBar placeHolder="Search by city or town" onSubmit={handleSearchSubmit}/>
+        <span className="text-xl text-gray-500 font-thin">Happiness is a click away</span>
+        <SearchBar placeHolder="Search Denver, Boulder, London, or Manchester" onSubmit={handleSearchSubmit}/>
       </div>
       <div className="grid md:grid-cols-2 gap-5">
-        <img src={landingImage} />
+        <div className="hover:cursor-pointer">
+          <img src={landingImage} />
+        </div>
         <div className="flex flex-col items-center justify-center gap-4 text-center">
           <span className="font-bold text-3xl tracking-tighter text-blue-600">
             Order happiness even faster!
           </span>
-          <span className="text-gray-500 font-thin">
-            Discounts available on our app
-          </span>
-          <img src={appDownloadImage}/>
+          <Link to={"/"} className="hover:cursor-pointer">
+            <span className="text-gray-500 font-thin">
+              Discounts available on our app
+            </span>
+            <img src={appDownloadImage} className="mt-3"/>
+          </Link>
         </div>
       </div>
     </div>
