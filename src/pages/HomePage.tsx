@@ -17,7 +17,7 @@ const HomePage = () => {
         <h1 className="text-5xl font-bold tracking-tight text-blue-600">
           Food will make you happy.
         </h1>
-        <span className="text-xl">Happiness is a click away</span>
+        <span className="text-xl text-gray-500 font-semibold font-thin">Happiness is a click away</span>
         <SearchBar placeHolder="Search by city or town" onSubmit={handleSearchSubmit}/>
       </div>
       <div className="grid md:grid-cols-2 gap-5">
@@ -26,8 +26,8 @@ const HomePage = () => {
           <span className="font-bold text-3xl tracking-tighter text-blue-600">
             Order happiness even faster!
           </span>
-          <span className="text-blue-600">
-            Order happiness even faster!
+          <span className="text-gray-500 font-thin">
+            Discounts available on our app
           </span>
           <img src={appDownloadImage}/>
         </div>

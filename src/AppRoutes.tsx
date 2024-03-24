@@ -8,6 +8,8 @@ import ManageRestaurantPage from "./pages/ManageRestaurantPage";
 import SearchPage from "./pages/SearchPage";
 import DetailPage from "./pages/DetailPage";
 import OrderStatusPage from "./pages/OrderStatusPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 const AppRoutes = () => {
   return (
@@ -60,7 +62,22 @@ const AppRoutes = () => {
       </Route>
       {/* <Route path="/user-profile" element={<span>USER PROFILE PAGE</span>} /> */}
       <Route path="*" element={<Navigate to="/" />} />
-
+      <Route 
+        path="/privacy-policy" 
+        element={
+          <Layout>
+            <PrivacyPolicy />
+          </Layout>
+        }
+      />
+      <Route 
+        path="/terms-and-conditions" 
+        element={
+          <Layout>
+            <TermsAndConditions />
+          </Layout>
+        }
+      />
 
     </Routes>
   );
