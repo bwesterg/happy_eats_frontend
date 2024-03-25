@@ -10,7 +10,7 @@ const SearchResultInfo = ({ total, city }: Props) => {
     <div className="text-xl font-bold flex flex-col gap-3 justify-between lg:items-center lg:flex-row">
       <span>
         {total} Found in {city}
-        <Link to="/" className="ml-1 text-sm font-semibold underline cursor-pointer text-blue-500">Udate Location</Link>
+        <Link to="/" className="ml-1 text-sm font-semibold underline cursor-pointer text-blue-500">Update Location</Link>
       </span>
     </div>
   )
