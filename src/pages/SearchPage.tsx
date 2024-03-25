@@ -73,7 +73,10 @@ const SearchPage = () => {
   }
 
   if (!results?.data || !city) {
-    return <span>Nothing found</span>;
+    return <span className="text-gray-500">We're using the free tier of Render, so sometimes the first search
+      can take a minute to populate. If you're still seeing this message after 30 seconds, 
+      refresh the page or reset the search parameters.""
+    </span>;
   }
   
   return (

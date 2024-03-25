@@ -8,7 +8,8 @@ const OrderStatusPage = () => {
   console.log(orders);
 
   if (isLoading) {
-    return "Loading...";
+    return "This website is using Render's free tier. You may \n\
+    need to reload if you see this message for more than 30 secons";
   }
 
   if (!orders || orders.length === 0) {

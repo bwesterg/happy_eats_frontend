@@ -66,7 +66,6 @@ const DetailPage = () => {
       return updatedCartItems;
     });
   };
-
   const removeFromCart = (cartItem: CartItem) => {
     setCartItems((prevCartItems)=> {
       const updatedCartItems = prevCartItems.filter(
@@ -109,7 +108,8 @@ const DetailPage = () => {
   };
 
   if (isLoading || !restaurant) {
-    return "Loading...";
+    return "This website is using Render's free tier. You may \n\
+    need to reload if you see this message for more than 30 secons";
   };
 
   return (
