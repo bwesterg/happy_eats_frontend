@@ -19,6 +19,7 @@ export type Restaurant = {
   user: string;
   restaurantName: string;
   city: string;
+  state: string;
   country: string;
   deliveryPrice: number;
   estimatedDeliveryTime: number;
