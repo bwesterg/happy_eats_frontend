@@ -18,7 +18,7 @@ const HomePage = () => {
           Food will make you happy.
         </h1>
         <span className="text-xl text-gray-500 font-thin">Happiness is a click away</span>
-        <SearchBar placeHolder="Search Denver, Boulder, London, or Manchester" onSubmit={handleSearchSubmit}/>
+        <SearchBar placeHolder="Search Restaurants in Boulder and Denver, Colorado" onSubmit={handleSearchSubmit}/>
       </div>
       <div className="grid md:grid-cols-2 gap-5">
         <div className="hover:cursor-pointer">
