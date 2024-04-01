@@ -14,11 +14,11 @@ const HomePage = () => {
   return (
     <div className="flex flex-col gap-12">
       <div className="md:px-32 bg-white rounded-lg shadow-md py-8 flex flex-col gap-5 text-center -mt-16">
-        <h1 className="text-5xl font-bold tracking-tight text-blue-600">
-          Food will make you happy.
+        <h1 className="text-5xl font-bold tracking-tight text-blue-600 mx-2">
+          You are hungry...
         </h1>
-        <span className="text-xl text-gray-500 font-thin">Happiness is a click away</span>
-        <SearchBar placeHolder="Search Restaurants in Boulder and Denver, Colorado" onSubmit={handleSearchSubmit}/>
+        <span className="text-xl text-gray-500 font-thin">Search in Denver and Boulder, Colorado</span>
+        <SearchBar placeHolder="" onSubmit={handleSearchSubmit}/>
       </div>
       <div className="grid md:grid-cols-2 gap-5">
         <div className="hover:cursor-pointer">

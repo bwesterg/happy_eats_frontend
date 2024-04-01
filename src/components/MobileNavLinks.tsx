@@ -18,6 +18,8 @@ const MobileNavLinks = () => {
       <Button onClick={() => logout()} className="flex items-center font-bold hover:bg-gray-500">
         Log Out
       </Button>
+      <Link to={"/privacy-policy"} className="hover:text-blue-200">Privacy Policy</Link>
+      <Link to={"/terms-and-conditions"} className="hover:text-blue-200">Terms & Conditions</Link>
     </>
   )
 };

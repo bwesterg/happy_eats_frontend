@@ -70,7 +70,7 @@ const ManageRestaurantForm = ({ onSave, isLoading, restaurant }: Props) => {
     if(!restaurant) {
       return;
     }
-    console.log("chairlift", restaurant.imageUrl)
+    // console.log("chairlift", restaurant.imageUrl)
     const deliveryPriceFormatted = parseInt(
       (restaurant.deliveryPrice/100).toFixed(2)
       );

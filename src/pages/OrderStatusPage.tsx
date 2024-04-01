@@ -5,11 +5,11 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const OrderStatusPage = () => {
   const { orders, isLoading } = useGetMyOrders();
-  console.log(orders);
+  // console.log(orders);
 
   if (isLoading) {
     return "This website is using Render's free tier. You may \n\
-    need to reload if you see this message for more than 30 secons";
+    need to reload if you see this message for more than 30 seconds";
   }
 
   if (!orders || orders.length === 0) {
